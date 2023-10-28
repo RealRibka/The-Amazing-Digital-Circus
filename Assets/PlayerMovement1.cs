@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement1 : MonoBehaviour
 {
-    public CharacterController controller;
+    private CharacterController controller;
     public float speed = 12f;
     public float gravity = -9.81f;
     public float jumpHeight = 3f;
@@ -19,6 +19,7 @@ public class PlayerMovement1 : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
+        controller = GetComponent<CharacterController>();
     }
 
     // Update is called once per frame
@@ -35,7 +36,9 @@ public class PlayerMovement1 : MonoBehaviour
         float z = Input.GetAxis("Vertical");
 
         Vector3 move = transform.right * x + transform.forward * z;
-
+        if(Input.GetButton("Shift"))
+            controller.Move(move * (speed * 1.5f) * Time.deltaTime);
+        else
         controller.Move(move * speed * Time.deltaTime);
 
         if (Input.GetButtonDown("Jump") && isGrounded)

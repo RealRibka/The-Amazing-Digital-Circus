@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -444,7 +444,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5401892c6db44b4881e7a9424eceb61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseSensitivity: 10000
+  mouseSensitivity: 10
   playerBody: {fileID: 1063703924}
 --- !u!1 &1063703921
 GameObject:
@@ -521,7 +521,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 997cacc3fbf39dc459de2d366413dbb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 1063703923}
   speed: 12
   gravity: -19.62
   jumpHeight: 3

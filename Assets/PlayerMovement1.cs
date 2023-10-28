@@ -5,14 +5,15 @@ using UnityEngine;
 public class PlayerMovement1 : MonoBehaviour
 {
     public CharacterController controller;
-    public float speed = 12f;
-    public float gravity = -9.81f;
-    public float jumpHeight = 3f;
+    public float speed = 8f;
+    public float gravity = -100.81f;
+    public float jumpHeight = 2f;
     public Transform groundCheck;
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
     Vector3 velocity;
     bool isGrounded;
+    bool isJumping;
     Animator animator;
 
     // Start is called before the first frame update
@@ -41,7 +42,7 @@ public class PlayerMovement1 : MonoBehaviour
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-            animator.SetTrigger("Jumping");
+            isJumping = true;
         }
 
         velocity.y += gravity * Time.deltaTime;
@@ -50,5 +51,12 @@ public class PlayerMovement1 : MonoBehaviour
 
         // Установите параметр "IsRunning" в анимационном контроллере на основе входных данных
         animator.SetBool("IsRunning", (x != 0 || z != 0));
+
+        animator.SetBool("IsJumping", isJumping);
+
+        if (isGrounded)
+        {
+            isJumping = false;
+        }
     }
 }

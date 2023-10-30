@@ -13,6 +13,8 @@ public class CustomCharacterController : MonoBehaviour
     public float runningSpeed = 6f;
     public float currentSpeed;
     private float animationInterpolation = 1f;
+    public FootstepSounds footstepSounds;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -56,12 +58,15 @@ public class CustomCharacterController : MonoBehaviour
             // Если нет, то тогда бежим!
             else
             {
+                footstepSounds.PlayFootstep(true);
                 Run();
             }
         }
         // Если W & Shift не зажаты, то мы просто идем пешком
         else
         {
+            if(Input.GetKey(KeyCode.W))
+                footstepSounds.PlayFootstep(false);
             Walk();
         }
         //Если зажат пробел, то в аниматоре отправляем сообщение тригеру, который активирует анимацию прыжка

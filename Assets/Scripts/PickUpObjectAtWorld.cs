@@ -25,7 +25,7 @@ public class PickUpObjectAtWorld : MonoBehaviour, IInteract
             float X = Math.Clamp(mousePosition.x, -2, 2);
             float Y = Math.Clamp(mousePosition.y, -2, 2);
             float Z = Math.Clamp(mousePosition.z, -2, 2);
-            // Устанавливаем новую позицию объекта с учетом глубины нажатия
+            // Устанавливаем новую позицию объекта с уч.етом глубины нажатия
             transform.position = new Vector3(camPos.x - X, camPos.y + Y, camPos.z - Z) + offset;
         }
     }

@@ -13,8 +13,11 @@ public class CustomCharacterController : MonoBehaviour
     public float runningSpeed = 6f;
     public float currentSpeed;
     private float animationInterpolation = 1f;
+<<<<<<< HEAD
     public FootstepSounds footstepSounds;
 
+=======
+>>>>>>> 922e362d781d4bb2c6d2ab4702009e7c018ad6f5
     // Start is called before the first frame update
     void Start()
     {
@@ -58,15 +61,21 @@ public class CustomCharacterController : MonoBehaviour
             // Если нет, то тогда бежим!
             else
             {
+<<<<<<< HEAD
                 footstepSounds.PlayFootstep(true);
+=======
+>>>>>>> 922e362d781d4bb2c6d2ab4702009e7c018ad6f5
                 Run();
             }
         }
         // Если W & Shift не зажаты, то мы просто идем пешком
         else
         {
+<<<<<<< HEAD
             if(Input.GetKey(KeyCode.W))
                 footstepSounds.PlayFootstep(false);
+=======
+>>>>>>> 922e362d781d4bb2c6d2ab4702009e7c018ad6f5
             Walk();
         }
         //Если зажат пробел, то в аниматоре отправляем сообщение тригеру, который активирует анимацию прыжка
@@ -88,7 +97,11 @@ public class CustomCharacterController : MonoBehaviour
         movingVector = Vector3.ClampMagnitude(camF.normalized * Input.GetAxis("Vertical") * currentSpeed + camR.normalized * Input.GetAxis("Horizontal") * currentSpeed, currentSpeed);
         // Magnitude - это длинна вектора. я делю длинну на currentSpeed так как мы умножаем этот вектор на currentSpeed на 86 строке. Я хочу получить число максимум 1.
         anim.SetFloat("magnitude", movingVector.magnitude / currentSpeed);
+<<<<<<< HEAD
         //Debug.Log(movingVector.magnitude / currentSpeed);
+=======
+        Debug.Log(movingVector.magnitude / currentSpeed);
+>>>>>>> 922e362d781d4bb2c6d2ab4702009e7c018ad6f5
         // Здесь мы двигаем персонажа! Устанавливаем движение только по x & z потому что мы не хотим чтобы наш персонаж взлетал в воздух
         rig.velocity = new Vector3(movingVector.x, rig.velocity.y, movingVector.z);
         // У меня был баг, что персонаж крутился на месте и это исправил с помощью этой строки

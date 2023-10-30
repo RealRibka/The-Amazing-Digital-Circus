@@ -1,57 +1,33 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraControl : MonoBehaviour
+public class CameraLook : MonoBehaviour
 {
-    public Transform playerTransform; // Ссылка на трансформ игрока
-    public float rotationSpeed = 2.0f;
-    public float maxRotationSpeed = 5.0f; // Максимальная скорость вращения камеры
-    private Vector3 offset;
-    private bool rotateCamera = false;
+    public float sensitivity = 2.0f; // Чувствительность мыши
+    public Transform player;
+    private float verticalRotation = 0;
+    private float horizontalRotation = 0;
 
-    private void Start()
+    void Start()
     {
-        if (playerTransform == null)
-        {
-            Debug.LogError("Player Transform not assigned to CameraControl script.");
-            enabled = false; // Отключить скрипт, чтобы избежать ошибок
-            return;
-        }
-
-        offset = transform.position - playerTransform.position;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
-    private void LateUpdate()
+    void Update()
     {
-        if (rotateCamera)
-        {
-            float horizontalInput = Input.GetAxis("Horizontal");
-            float verticalInput = Input.GetAxis("Vertical");
+        float mouseX = Input.GetAxis("Mouse X") * sensitivity;
+        float mouseY = Input.GetAxis("Mouse Y") * sensitivity;
 
-            if (horizontalInput != 0 || verticalInput != 0)
-            {
-                float desiredAngle = playerTransform.eulerAngles.y;
-                Quaternion rotation = Quaternion.Euler(0, desiredAngle, 0);
-                transform.position = playerTransform.position + rotation * offset;
-                transform.LookAt(playerTransform.position);
-            }
-        }
-    }
+        verticalRotation -= mouseY;
+        verticalRotation = Mathf.Clamp(verticalRotation, -90, 90);
 
-    private void Update()
-    {
-        if (Input.GetKey(KeyCode.W))
-        {
-            rotateCamera = true;
-        }
-        else
-        {
-            rotateCamera = false;
-        }
-    }
+        horizontalRotation += mouseX;
 
-    // Добавьте этот метод для ограничения скорости вращения камеры
-    private void ClampRotationSpeed()
-    {
-        rotationSpeed = Mathf.Clamp(rotationSpeed, 0, maxRotationSpeed);
+        // Поворачиваем камеру вверх и вниз
+        transform.localRotation = Quaternion.Euler(verticalRotation, 0, 0);
+
+        // Поворачиваем игрока влево и вправо
+        player.transform.localRotation = Quaternion.Euler(0, horizontalRotation, 0);
     }
 }

@@ -4,73 +4,63 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public float walkSpeed = 5.0f;
+    public float runSpeed = 10.0f;
+    public float jumpForce = 5.0f;
+    public float gravity = 9.81f;
 
-    public CharacterController controller;
-    public Transform GroundCheck;
-    public LayerMask groundMask;
-    public float speed = 5f;
-    public float gravity = 9.8f;
+    private CharacterController controller;
+    private Vector3 moveDirection;
+    private bool isGrounded;
 
-    public float jumpHeight = 3f;
-    public float groundDistance = 0.4f;
-    public Animator anim;
-    public GameObject cam;
-    public GameObject maincam;
-    Vector3 velocity;
+    private Animator animator; // Добавьте ссылку на компонент Animator
 
-    bool isGrounded;
-    // Start is called before the first frame update
     void Start()
     {
-        
+        controller = GetComponent<CharacterController>();
+        animator = GetComponent<Animator>(); // Инициализируйте компонент Animator
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (controller.isGrounded)
-        {
-            anim.SetFloat("X", Input.GetAxis("Horizontal"));
-            anim.SetFloat("Y", Input.GetAxis("Vertical"));
-             
-        }
-        isGrounded = Physics.CheckSphere(GroundCheck.position, groundDistance, groundMask);
-        if(isGrounded && velocity.y < 0)
-        {
-            velocity.y = -2f;
-        }
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
+        isGrounded = controller.isGrounded;
 
-        if(Input.GetKeyDown(KeyCode.Space)&& isGrounded)
+        float horizontal = Input.GetAxis("Horizontal");
+        float vertical = Input.GetAxis("Vertical");
+
+        float moveSpeed = Input.GetKey(KeyCode.LeftShift) ? runSpeed : walkSpeed;
+
+        if (isGrounded)
         {
-            velocity.y = Mathf.Sqrt(jumpHeight * gravity);
-            anim.SetTrigger("Jump");
-        }
-        Vector3 move = transform.right * x + transform.forward * z;
-        controller.Move(move * speed * Time.deltaTime);
-        velocity.y -= gravity * Time.deltaTime;
-        controller.Move(velocity * Time.deltaTime);
-        if (Input.GetKey("c"))
-        {
-            controller.height = 1f;
+            moveDirection = transform.TransformDirection(new Vector3(horizontal, 0, vertical));
+            moveDirection *= moveSpeed;
+
+            if (Input.GetButtonDown("Jump"))
+            {
+                moveDirection.y = jumpForce;
+                animator.SetBool("IsJumping", true); // Анимация прыжка
+            }
+            else if (horizontal != 0 || vertical != 0) // Если есть движение
+            {
+                if (moveSpeed == runSpeed)
+                    animator.SetBool("IsRunning", true); // Анимация бега
+                else
+                    animator.SetBool("IsWalking", true); // Анимация ходьбы
+            }
+            else
+            {
+                animator.SetBool("IsWalking", false);
+                animator.SetBool("IsRunning", false);
+                animator.SetBool("IsJumping", false); // Анимация покоя
+            }
         }
         else
         {
-            controller.height = 1.79f;
+            animator.SetBool("IsJumping", false);
         }
-        if(Input.GetKey("left shift"))
-        {
-            speed = 10f;
-            anim.SetFloat("Y", 2);
-            cam.SetActive(true);
-            maincam.SetActive(false);
-        }
-        else
-        {
-            speed = 5f;
-            cam.SetActive(false);
-            maincam.SetActive(true);
-        }
+
+        moveDirection.y -= gravity * Time.deltaTime;
+
+        controller.Move(moveDirection * Time.deltaTime);
     }
 }

@@ -83,7 +83,7 @@ public class CustomCharacterController : MonoBehaviour
         movingVector = Vector3.ClampMagnitude(camF.normalized * Input.GetAxis("Vertical") * currentSpeed + camR.normalized * Input.GetAxis("Horizontal") * currentSpeed, currentSpeed);
         // Magnitude - это длинна вектора. я делю длинну на currentSpeed так как мы умножаем этот вектор на currentSpeed на 86 строке. Я хочу получить число максимум 1.
         anim.SetFloat("magnitude", movingVector.magnitude / currentSpeed);
-        Debug.Log(movingVector.magnitude / currentSpeed);
+        //Debug.Log(movingVector.magnitude / currentSpeed);
         // Здесь мы двигаем персонажа! Устанавливаем движение только по x & z потому что мы не хотим чтобы наш персонаж взлетал в воздух
         rig.velocity = new Vector3(movingVector.x, rig.velocity.y, movingVector.z);
         // У меня был баг, что персонаж крутился на месте и это исправил с помощью этой строки

@@ -8,13 +8,13 @@ public class PlayerInteraction : MonoBehaviour
         {
             // Проведите Raycasting или другие методы для определения объекта перед игроком
             RaycastHit hit;
-            if (Physics.Raycast(transform.position, transform.forward, out hit, 100f))
+            if (Physics.Raycast(transform.position, transform.forward, out hit, 10f))
             {
                 IInteract interactable = hit.collider.GetComponent<IInteract>();
                 if (interactable != null)
                 {
                     interactable.Action();
-                    Debug.Log("Action!!!!");
+                    // Debug.Log("Action!!!!");
                 }
             }
         }

@@ -46,13 +46,18 @@ public class CustomCharacterController : MonoBehaviour
         // Устанавливаем поворот персонажа когда камера поворачивается 
         transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, mainCamera.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
 
+        bool otherDirections = Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D);
+
+        if(otherDirections)
+            footstepSounds.PlayFootstep(false);
         // Зажаты ли кнопки W и Shift?
         if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.LeftShift))
         {
             // Зажаты ли еще кнопки A S D?
-            if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
+            if (otherDirections)
             {
                 // Если да, то мы идем пешком
+                footstepSounds.PlayFootstep(true);
                 Walk();
             }
             // Если нет, то тогда бежим!

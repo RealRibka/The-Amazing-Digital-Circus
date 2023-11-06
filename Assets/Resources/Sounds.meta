@@ -1,7 +1,12 @@
 fileFormatVersion: 2
+<<<<<<< Updated upstream:Assets/Resources/Sounds.meta
 guid: 235795658ebf566458bb366d02611928
 folderAsset: yes
 DefaultImporter:
+=======
+guid: 4edf9ce576b9c40468c1c70d3b00e9a0
+NativeFormatImporter:
+>>>>>>> Stashed changes:Assets/Character/Materials/Materials/Materials/New Material 1.mat.meta
   externalObjects: {}
   userData: 
   assetBundleName: 

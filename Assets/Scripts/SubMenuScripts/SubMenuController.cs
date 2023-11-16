@@ -9,7 +9,7 @@ public class OpenSubMenu : MonoBehaviour
     [SerializeField]
     private MonoBehaviour[] scriptsToBlock;
 
-    // сама ебаная менюшка, которую нужно открыть
+    // Сама ебаная менюшка, которую нужно открыть
     [SerializeField]
     private GameObject subMenu;
 
@@ -40,17 +40,15 @@ public class OpenSubMenu : MonoBehaviour
     {
         switch (state)
         {
+            // Включаем курсор
             case true:
-                // Прекрепляем курсор к середине экрана
                 Cursor.lockState = CursorLockMode.Confined;
-                // и делаем его невидимым
                 Cursor.visible = true;
                 break;
 
+            // Выключаем курсор
             case false:
-                // Прекрепляем курсор к середине экрана
                 Cursor.lockState = CursorLockMode.Locked;
-                // и делаем его невидимым
                 Cursor.visible = false;
                 break;
         }

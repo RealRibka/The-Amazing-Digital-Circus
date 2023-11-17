@@ -11,26 +11,11 @@ public class AnimeGirlInteract : MonoBehaviour, IInteract
     private SubMenuController subMenuController;
     public void Action()
     {
-        Choose[] choose = {
-            // Choose
-            new("Fuck u little poshla nahui", new Monologue[]{
-                // Monologue
-                new("Eh.. Why..", "Anny"),
-                new("Why are you so angry...", "Anny"),
-                new("Any way... Good luck...", "Anny")
-            }),
-            // Choose
-            new("poka bluat!", new Monologue[]{
-                // Monologue
-                new("Bye!", "Anny")})
-        };
         Monologue[] monologues = {
             // Monologue
-            new("Uhm.. Hello...", "???"),
-            new("Do you.. Angry?", "???"),
-            new("I see... By to way my name is Anny", "Anny"),
-            new("Ah... You can't talk.. Sorry.. I need to go.. Really sorry bro...", "Anny", choose),
-            
+            new Monologue("AAAAAAAAAAAA", "Anny"),
+            new Monologue("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB", "Anny"),
+            // ...
         };
 
         subMenuController.SetActiveToScripts(false);

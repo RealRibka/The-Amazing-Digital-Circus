@@ -26,7 +26,8 @@ public class DialogueController : MonoBehaviour
     private LayoutGroup choosePanel;
 
     [SerializeField]
-    private ChooseMonoBehaviour choose;
+    private GameObject choicePrefab;
+
     private Monologue[] monologues;
     private int currentMonologue = 0;
     public bool isDialogueActive = false;
@@ -99,30 +100,24 @@ public class DialogueController : MonoBehaviour
 
     public void Next()
     {
-        bool isChooseEmpty = choose.choose.IsEmpty();
-        Debug.Log(isChooseEmpty);
+        if(currentMonologue == 0)
+        {
+            Choice[] choices = new Choice[]
+            {
+                new("bobobobobobbo", new[] { new Monologue("First choice", "Anny"), new Monologue("First choiceaaaaaaaa", "Anny"), }),
+                new("bububub", new[] { new Monologue("Second choice", "Anny") })
+            };
+            CreateChoices(choices);
+        }
         if(currentMonologue < monologues.Length - 1)
         {
-            if(!isChooseEmpty)
-            {
-                for(int i = 0; i < monologues[currentMonologue].chooses.Count(); i++)
-                {
-                    var chooseObject = Instantiate(choose, choosePanel.transform);
-                    chooseObject.GetComponent<ChooseMonoBehaviour>().choose = monologues[currentMonologue].chooses[i];
-                    chooseObject.GetComponent<ChooseMonoBehaviour>().Write(monologues[currentMonologue].chooses[i].choose);
-                    chooseObject.GetComponent<ChooseMonoBehaviour>().dialogueController = this;
-                }
-            }
             currentMonologue++;
             PrintText(monologues[currentMonologue].text, monologues[currentMonologue].author);
         }
         else
         {
-            if(!isChooseEmpty)
-            {
-                currentMonologue = 0;
-                CloseDialogueMenu();
-            }    
+            currentMonologue = 0;
+            CloseDialogueMenu();
         }
     }
 
@@ -132,5 +127,30 @@ public class DialogueController : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
+    }
+
+    // Function what create choices
+    public void CreateChoices(Choice[] choices)
+    {
+        ClearChoises();
+        
+        if (choices.Length == 0)
+        {
+            // Handle the case when the choices array is empty
+            return;
+        }
+        
+        for(int i = 0; i < choices.Length; i++)
+        {
+            var button = Instantiate(choicePrefab, choosePanel.transform);
+            button.GetComponentInChildren<TMP_Text>().text = choices[i].name;
+            button.GetComponent<Button>().onClick.AddListener(Aboba);
+        }
+    }
+    void Aboba()
+    {
+        SetMonologues(monogues);
+        ClearChoises();
+        Next();
     }
 }

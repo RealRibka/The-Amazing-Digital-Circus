@@ -9047,27 +9047,27 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: a73d8f8c0bdba674290d63850dfacb67, type: 3}
       propertyPath: m_LocalScale.x
-      value: 22.47712
+      value: 31.2801
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a73d8f8c0bdba674290d63850dfacb67, type: 3}
       propertyPath: m_LocalScale.y
-      value: 22.47712
+      value: 31.2801
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a73d8f8c0bdba674290d63850dfacb67, type: 3}
       propertyPath: m_LocalScale.z
-      value: 22.47712
+      value: 31.2801
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a73d8f8c0bdba674290d63850dfacb67, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 25.500996
+      value: 25.501
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a73d8f8c0bdba674290d63850dfacb67, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.07999635
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a73d8f8c0bdba674290d63850dfacb67, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -6.854321
+      value: -6.8529
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a73d8f8c0bdba674290d63850dfacb67, type: 3}
       propertyPath: m_LocalRotation.w
@@ -12149,7 +12149,7 @@ MonoBehaviour:
   subMenuController: {fileID: 685444144}
   continueButton: {fileID: 1202701522}
   choosePanel: {fileID: 1907570410}
-  choose: {fileID: 3164643854049784711, guid: 54b71c501c22a3c4784095ccd83cd583, type: 3}
+  choicePrefab: {fileID: 3164643854049784711, guid: 54b71c501c22a3c4784095ccd83cd583, type: 3}
   isDialogueActive: 0
 --- !u!1001 &2157919964754504557
 PrefabInstance:

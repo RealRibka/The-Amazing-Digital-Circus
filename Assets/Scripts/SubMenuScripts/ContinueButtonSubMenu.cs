@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class ContinueButtonSubMenu : MonoBehaviour
 {
-    // Штука которая нажимается на эскейп менюшка эта блять
+    // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
     [SerializeField]
     private GameObject subMenu;
 
-    // хуйня которая отвечает за основные хуйни в менюшке
+    // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     [SerializeField]
-    private OpenSubMenu SubMenuController;
+    private SubMenuController SubMenuController;
 
     public void Continue()
     {

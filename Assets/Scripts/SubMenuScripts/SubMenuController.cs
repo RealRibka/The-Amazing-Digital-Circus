@@ -3,50 +3,56 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class OpenSubMenu : MonoBehaviour
+public class SubMenuController : MonoBehaviour
 {
-    // Скрипты, которые нужно оффнуть у перса
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ
     [SerializeField]
     private MonoBehaviour[] scriptsToBlock;
 
-    // Сама ебаная менюшка, которую нужно открыть
+    // пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     [SerializeField]
     private GameObject subMenu;
 
+    public bool canCallSubMenu = true;
+
     private void Update()
     {
-        // На эскейп мы отключаем передвижение персонажа и открываем меню
+        // пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
         if(Input.GetKeyDown(KeyCode.Escape) && !subMenu.activeInHierarchy)
         {
-            subMenu.SetActive(true);
+            if (canCallSubMenu)
+            {    
+                subMenu.SetActive(true);
 
-            SwitchCursorState(true);
+                // SwitchCursorState(true);
 
-            SetActiveToScripts(false);
+                SetActiveToScripts(false);
+            }
         }
     }
 
-    // Врубаем/отрубаем все скрипты персонажа
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ/пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     public void SetActiveToScripts(bool status)
     {
         foreach (var script in scriptsToBlock)
         {
             script.enabled = status;
         }
+        SwitchCursorState(!status);
     }
 
-    // Отображения курсора 
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ 
     public void SwitchCursorState(bool state)
     {
         switch (state)
         {
-            // Включаем курсор
+            // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
             case true:
                 Cursor.lockState = CursorLockMode.Confined;
                 Cursor.visible = true;
                 break;
 
-            // Выключаем курсор
+            // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
             case false:
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
